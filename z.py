@@ -6,90 +6,13 @@ import subprocess
 import platform
 import socket 
 from datetime import datetime, timedelta
-import json
-
-# Dateiname für die Level-Speicherung
-level_file = 'level.json'
-
-# Willkommensnachricht und Level-System
-def welcome_message():
-    start_time = datetime.now()
-    level = load_level()  # Lade den gespeicherten Level
-
-    while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        current_time = datetime.now()
-        elapsed_time = current_time - start_time
-        minutes_elapsed = elapsed_time.total_seconds() // 60
-        
-        print("==============================")
-        print("         Welcome to ztool      ")
-        print("==============================")
-        print(f"Time on tool: {int(minutes_elapsed)} minutes")
-        print(f"Level: {level}")
-        print("==============================")
-        
-        if level < 100:
-            if minutes_elapsed >= 2 * (level // 10 + 1):
-                level += 1
-                start_time = datetime.now()
-                # Update player icon name based on level
-                update_player_icon(level)
-        else:
-            if minutes_elapsed >= 20:
-                level += 1
-                start_time = datetime.now()
-                update_player_icon(level)
-
-        save_level(level)  # Speichere den aktuellen Level
-        time.sleep(2 * 60)  # Warte 2 Minuten, bevor das Level erneut überprüft wird
-
-        # Nachdem das Level aktualisiert wurde, rufe das Hauptmenü auf
-        main_menu()
-
-def update_player_icon(level):
-    player_icons = {
-        1: "Bot",
-        20: "Mystery",
-        30: "Hard",
-        40: "Very Good",
-        50: "Very Hard",
-        60: "Programmer",
-        70: "Very Hard Programmer",
-        80: "One of Best",
-        90: "Soon for the Best",
-        100: "The Best of Tools 👻"
-    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  #  toke  loader V2 CAN _#XXXX/×&;_*÷8×^#:'KSIQO3LRNDNSPQBDKDIYBSW8EU loader !dont share privat><code lab python;;g load <check safe . grabber X not found.safe code _/ yes answer TOKEN UEBW8FGBR837ENWBDO3BEO code <api.networld.co> .      please enter □□□□□□□□□□□□□□□□□□□■□□□□□□□□□□□□□□□□ token FOUND 《xxxxxxxxxxxxxxx》 log 2FA active ..x.x..x.x x  x   email:xxxxxxx@xxxxx.xxx pass: xxxxxxxx data: 《https://github/account/settings/byZ/l                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  #  toke  loader V2 CAN _#XXXX/×&;_*÷8×^#:'KSIQO3LRNDNSPQBDKDIYBSW8EU loader !dont share privat><code lab python;;g load <check safe . grabber X not found.safe code _/ yes answer TOKEN UEBW8FGBR837ENWBDO3BEO code <api.networld.co> .      please enter □□□□□□□□□□□□□□□□□□□■□□□□□□□□□□□□□□□□ token FOUND 《xxxxxxxxxxxxxxx》 log 2FA active ..x.x..x.x x  x   email:xxxxxxx@xxxxx.xxx pass: xxxxxxxx data: 《https://github/account/settings/byZ/login?share.com》     
     
-    for key in sorted(player_icons.keys(), reverse=True):
-        if level >= key:
-            player_icon = player_icons[key]
-            break
-    
-    os.system('title ' + player_icon)  # Setze den Konsolentitel, um den Spieler-Icon-Namen anzuzeigen
-    print(f"Player Icon Name: {player_icon}")
-
-def save_level(level):
-    with open(level_file, 'w') as f:
-        json.dump(level, f)
-
-def load_level():
-    if os.path.exists(level_file):
-        with open(level_file, 'r') as f:
-            try:
-                level = json.load(f)
-                return level
-            except json.JSONDecodeError:
-                print("Error loading level file. Starting from level 1.")
-                return 1
-    else:
-        return 1  # Wenn keine Datei vorhanden ist, starte mit Level 1
 
 def main_menu():
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
         print("==============================")
-        print("         Main Menu            ")
+        print("            ztool              ")
         print("==============================")
         print("1. Send Discord Webhook Message")
         print("2. Delete Discord Webhook")
@@ -103,50 +26,34 @@ def main_menu():
         print("10. Show WiFi Information")
         print("0. Exit")
         print("==============================")
-
-        choice = input("Enter your choice: ")
         
-        if choice == '1':
-            # Hier kommt der Code für die Discord Webhook Nachricht
-            pass
-        elif choice == '2':
-            # Hier kommt der Code zum Löschen des Discord Webhooks
-            pass
-        elif choice == '3':
-            # Hier kommt der Code für die IP-Adressensuche
-            pass
-        elif choice == '4':
-            # Hier kommt der Code für die Anzeige der eigenen IP-Adresse
-            pass
-        elif choice == '5':
-            # Hier kommt der Code für den DDos-Dateiversand
-            pass
-        elif choice == '6':
-            # Hier kommt der Code für den Dateiversand an das Opfer
-            pass
-        elif choice == '7':
-            # Hier kommt der Code für das Öffnen von Nitro Gen
-            pass
-        elif choice == '8':
-            # Hier kommt der Code für die Farbumschaltung der GUI
-            pass
-        elif choice == '9':
-            # Hier kommt der Code für die Installation und den Dateiversand an das Opfer
-            pass
-        elif choice == '10':
-            # Hier kommt der Code für die Anzeige der WiFi-Informationen
-            pass
-        elif choice == '0':
-            print("Exiting...")
-            break
+        choice = input("Please choose an option (0-10): ")
+        
+        if choice == "1":
+            webhook_spammer()
+        elif choice == "2":
+            webhook_deleter()
+        elif choice == "3":
+            ip_lookup()
+        elif choice == "4":
+            what_is_my_ip()
+        elif choice == "5":
+            file_sender()
+        elif choice == "6":
+            open_link()
+        elif choice == "7":
+            open_nitro_gen()
+        elif choice == "8":
+            color_switch()
+        elif choice == "9":
+            install_file()
+        elif choice == "10":
+            show_wifi_info()
+        elif choice == "0":
+            exit()
         else:
-            print("Invalid choice. Please enter a valid option.")
-
-        input("Press Enter to continue...")
-
-if __name__ == "__main__":
-    welcome_message()
-
+            print("Invalid option! Please choose again.")
+            input("Press Enter to continue...")
 
 def webhook_spammer():
     os.system('cls' if os.name == 'nt' else 'clear')
